@@ -7,52 +7,112 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+# Laravel - Sistema de agência de turismo
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+Aplicação em Laravel v5.6.* sistema de agência de turismo.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requisitos
+- [Git](https://git-scm.com/)
+- [Composer](http://getcomposer.org/doc/00-intro.md)
+- [Node](https://nodejs.org/en/)
+- [MySQL](https://www.mysql.com/)
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+## Instalação
 
-## Learning Laravel
+1. Efetuar a instalação clonando ou baixando do repositorio.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+    ```bash 
+    git clone git@github.com:CodeSiteBr/laravel-agencia-turismo.git
+    ```
+    ou baixar do repositorio [laravel-agencia-turismo](https://github.com/CodeSiteBr/laravel-agencia-turismo/archive/master.zip)
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+2. Entrar na pasta do projeto, execute:
+    ```bash
+    cd laravel-agencia-turismo
+    ```
+3. Se composer está instalado, execute:
+    ```bash
+    composer install
+    ```
+4. Se node está instalado, execute:
+    ```bash
+    npm install
+    ```
+5. Criar o arquivo .env, execute:
+    ```bash
+    cp .env.example .env
+    ```
+6. Gerar uma nova chave para o arquivo .env, execute:
+    ```bash
+    php artisan key:generate
+    ```
+7. Criar o banco de dados com phpmyadmin ou workbench e configurar o arquivo .env nas linhas com os (`seus dados de conexão ao banco de dados`).
 
-## Laravel Sponsors
+    ```bash
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=homestead
+    DB_USERNAME=homestead
+    DB_PASSWORD=secret
+    ```
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+8. Criar as tabelas com o migrate
+    
+    
+    ```bash
+    php artisan migrate
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+    Popular as tabelas
+    ```bash
+    php artisan db:seed
+    ```
 
-## Contributing
+    Criar e popular as tabelas
+    ```bash
+    php artisan migrate --seed
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    Se precisar fazer alguma alteração nas migrates 
+    ```bash
+    php artisan migrate:refresh --seed
+    ```
 
-## Security Vulnerabilities
+9. Configurar o envio de e-mail no arquivo .env
+    
+    Se for em desenvolvimento crie uma conta no [mailtrap](https://mailtrap.io/) e configure as linhas.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    ```bash
+    MAIL_USERNAME=null
+    MAIL_PASSWORD=null
+    ```
+
+    Ou configuração completa de seu servidor de e-mail
+
+    ```bash
+    MAIL_DRIVER=smtp
+    MAIL_HOST=smtp.mailtrap.io
+    MAIL_PORT=2525
+    MAIL_USERNAME=null
+    MAIL_PASSWORD=null
+    MAIL_ENCRYPTION=null
+    ```
+10. Para exibir a imagem do usuario é necessário criar um link simbolico da pasta storage/app/public para /public
+    ```bash
+    php artisan storage:link
+    ```
+
+11. Se alterar os arquivos js ou sass da pasta resources/assets, é necessário, executar: 
+    ```bash
+    npm run dev
+    ```
+    Ou
+    ```bash
+    npm run watch
+    ```
+
+Agora você deve ser capaz de visitar o caminho para onde você instalou o aplicativo e ver a página inicial padrão.
 
 ## License
 
